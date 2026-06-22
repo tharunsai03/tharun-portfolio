@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Section from "../Section";
 import { ExternalLink } from "lucide-react";
 import { Github } from "../Icons";
+import InteractiveCard from "../InteractiveCard";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -43,17 +44,12 @@ export default function Projects() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 group/list"
       >
         {projects.map((project, index) => (
-          <motion.div key={index} variants={itemVariants} className="relative flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 group">
-            {/* Noise overlay */}
-            <div 
-              className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay z-0" 
-              style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
-            ></div>
-
-            {/* Image Placeholder */}
+          <motion.div key={index} variants={itemVariants}>
+            <InteractiveCard className="!p-0 flex flex-col group group-hover/list:opacity-40 hover:!opacity-100 transition-opacity duration-300">
+              {/* Image Placeholder */}
             <div className="relative z-10 h-48 bg-background border-b border-white/5 flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/10 to-accent-purple/10 mix-blend-overlay opacity-50 group-hover:opacity-100 transition-opacity"></div>
               <span className="text-text-secondary/50 text-sm font-mono">[ADD: Image Screenshot]</span>
@@ -65,7 +61,7 @@ export default function Projects() {
                 <span className={`text-[10px] font-mono px-2 py-1 rounded-full border ${
                   project.status === 'Completed' 
                     ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10'
-                    : 'border-amber-500/30 text-amber-400 bg-amber-500/10'
+                    : 'border-amber-500/30 text-white/90 bg-amber-500/10'
                 }`}>
                   {project.status}
                 </span>
@@ -108,6 +104,7 @@ export default function Projects() {
                 )}
               </div>
             </div>
+            </InteractiveCard>
           </motion.div>
         ))}
       </motion.div>

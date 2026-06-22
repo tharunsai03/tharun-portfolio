@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Section from "../Section";
+import InteractiveCard from "../InteractiveCard";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -78,17 +79,12 @@ export default function Skills() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 group/list"
       >
         {skillCategories.map((category) => (
-          <motion.div key={category.title} variants={itemVariants} className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden group">
-            {/* Noise overlay */}
-            <div 
-              className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay z-0" 
-              style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
-            ></div>
-
-            <h3 className="relative z-10 text-lg font-semibold text-foreground mb-6 font-heading">{category.title}</h3>
+          <motion.div key={category.title} variants={itemVariants}>
+            <InteractiveCard className="p-6 group-hover/list:opacity-40 hover:!opacity-100 transition-opacity duration-300">
+              <h3 className="text-lg font-semibold text-foreground mb-6 font-heading">{category.title}</h3>
             <div className="relative z-10 space-y-4">
               {category.skills.map((skill) => (
                 <div key={skill.name}>
@@ -109,6 +105,7 @@ export default function Skills() {
                 </div>
               ))}
             </div>
+            </InteractiveCard>
           </motion.div>
         ))}
       </motion.div>

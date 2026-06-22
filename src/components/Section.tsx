@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ReactNode, useRef } from "react";
 
 interface SectionProps {
   id: string;
@@ -11,9 +11,17 @@ interface SectionProps {
 }
 
 export default function Section({ id, title, children, className = "" }: SectionProps) {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
-    <section id={id} className={`py-24 sm:py-32 snap-start ${className}`}>
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+    <section ref={ref} id={id} className={`py-24 sm:py-32 relative ${className}`}>
+      <motion.div style={{ y }} className="mx-auto max-w-6xl px-6 lg:px-8">
         {title && (
           <motion.h2 
             initial={{ opacity: 0, y: 40 }}
@@ -33,7 +41,7 @@ export default function Section({ id, title, children, className = "" }: Section
         >
           {children}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

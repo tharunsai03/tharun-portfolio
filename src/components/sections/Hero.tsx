@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Download, Mail, ExternalLink } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -12,12 +12,21 @@ const HeroBackground = dynamic(() => import("../HeroBackground"), { ssr: false }
 
 export default function Hero() {
   const [showContact, setShowContact] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 snap-start">
+    <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <HeroBackground />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
+      <motion.div style={{ y, opacity }} className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
         
         {/* Left Side (Image & Name) */}
         <motion.div 
@@ -129,7 +138,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-      </div>
+      </motion.div>
       
       {/* Scroll indicator */}
       <motion.div 

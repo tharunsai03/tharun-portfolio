@@ -5,6 +5,7 @@ import Section from "../Section";
 import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import InteractiveCard from "../InteractiveCard";
 
 const certificates = [
   {
@@ -57,15 +58,10 @@ export default function Certificates() {
       </div>
 
       {/* Gallery */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 group/list">
         {filteredCertificates.map((cert, index) => (
-          <div key={index} className="relative flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 group">
-            {/* Noise overlay */}
-            <div 
-              className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay z-0" 
-              style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
-            ></div>
-            
+          <div key={index} className="group-hover/list:opacity-40 hover:!opacity-100 transition-opacity duration-300">
+            <InteractiveCard className="!p-0 flex flex-col group">
             {/* Image Placeholder */}
             <div className="relative z-10 h-40 bg-white border-b border-white/5 flex items-center justify-center overflow-hidden p-4">
                {cert.imageUrl ? (
@@ -102,6 +98,7 @@ export default function Certificates() {
                 )}
               </div>
             </div>
+            </InteractiveCard>
           </div>
         ))}
       </div>

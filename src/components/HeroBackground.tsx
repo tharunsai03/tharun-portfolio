@@ -171,12 +171,12 @@ export default function HeroBackground() {
 
   if (prefersReducedMotion) {
     return (
-      <div className="absolute inset-0 bg-gradient-to-br from-[#030712] via-[#0F172A] to-[#030712]" />
+      <div className="fixed inset-0 bg-gradient-to-br from-[#030712] via-[#0F172A] to-[#030712]" />
     );
   }
 
   return (
-    <div className="absolute inset-0 -z-10 pointer-events-none">
+    <div className="fixed inset-0 -z-10 pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 3], fov: 45 }}
         gl={{ powerPreference: "high-performance", alpha: false, antialias: true }}

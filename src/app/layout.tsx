@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased scroll-smooth snap-y snap-mandatory`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased scroll-smooth`}
     >
       <body className="bg-background text-foreground font-sans min-h-screen flex flex-col selection:bg-cyan-500/30">
         {children}
