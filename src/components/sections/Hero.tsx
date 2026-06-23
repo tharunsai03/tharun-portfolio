@@ -154,7 +154,7 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-full overflow-hidden border border-white/20 bg-panel shadow-[0_0_50px_rgba(56,189,248,0.2)] group-hover:shadow-[0_0_80px_rgba(139,92,246,0.3)] transition-shadow duration-500">
                <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/20 to-accent-purple/20 mix-blend-overlay z-10"></div>
                <Image 
-                 src="/profile .jpeg" 
+                 src="/profile.png" 
                  alt="Kandunuri Tharun Sai" 
                  fill 
                  className="object-cover transition-transform duration-700 group-hover:scale-110"
