@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-8 text-xs font-bold tracking-widest uppercase text-white/50">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors flex items-center gap-1 group">
+            <a href="https://github.com/tharunsai01" target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors flex items-center gap-1 group">
               GITHUB
               <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 text-accent-cyan" />
             </a>
