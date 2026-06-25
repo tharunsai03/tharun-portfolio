@@ -27,7 +27,7 @@ export default function CustomCursor() {
     y: useSpring(cursorY, { damping: 20 + i * 4, stiffness: 400 - i * 30, mass: 0.4 + i * 0.1 }),
   }));
 
-  const [clickParticles, setClickParticles] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [clickParticles, setClickParticles] = useState<{ id: number; x: number; y: number; angle: number }[]>([]);
 
   useEffect(() => {
     // Hide native cursor only on devices that have a precise pointer (mouse)
@@ -212,7 +212,7 @@ export default function CustomCursor() {
 
         {/* Click Explosion Particles */}
         <AnimatePresence>
-          {clickParticles.map((p: { id: number; x: number; y: number }) => (
+          {clickParticles.map((p) => (
             <motion.div
               key={p.id}
               className="fixed top-0 left-0 w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_2px_rgba(103,232,249,0.8)] mix-blend-normal"
